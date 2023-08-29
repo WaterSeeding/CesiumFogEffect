@@ -1,0 +1,32 @@
+{
+  "name": "cesium-light",
+  "version": "1.0.0",
+  "main": "./src/app.ts",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "webpack serve --config webpack.config.js"
+  },
+  "devDependencies": {
+    "@types/cesium": "^1.70.0",
+    "@types/dat.gui": "^0.7.10",
+    "@types/lodash": "^4.14.196",
+    "@types/node": "^20.4.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.4.3",
+    "typescript": "^5.0.4",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "cesium": "^1.108.0",
+    "dat.gui": "^0.7.9",
+    "dexie": "^3.2.4",
+    "lodash": "^4.17.21"
+  }
+}

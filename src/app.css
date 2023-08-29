@@ -1,0 +1,14 @@
+html,
+body,
+#cesium-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#gui {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
