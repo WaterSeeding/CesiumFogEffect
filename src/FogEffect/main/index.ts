@@ -1,7 +1,7 @@
 import * as Cesium from 'cesium';
-import FogEffectGLSL from './glsl/shader3.glsl';
+import FogEffectGLSL from './glsl/shader3';
 
-let FogEffectSource = FogEffectGLSL.replace(/#define GLSLIFY 1/g, '');
+let FogEffectSource = FogEffectGLSL;
 
 class FogEffect {
   viewer: Cesium.Viewer;

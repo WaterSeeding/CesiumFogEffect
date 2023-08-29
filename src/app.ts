@@ -6,8 +6,10 @@ import Model from "./Model/index";
 import DirectionalLight from "./DirectionalLight/index";
 import SkyBoxOnGround from "./SkyBoxOnGround/index";
 import Camera from "./Camera/index";
-import FogEffect from "./FogEffect/main";
+import FogEffect from "./FogEffect/main/index";
 import { setGuiCheckbox } from './guiTools/setGuiCheckbox'
+
+viewer.scene.skyAtmosphere.show = false;
 
 const gui = new dat.GUI({
   name: "Cesium GUI",
@@ -23,14 +25,14 @@ const camera = new Camera(
   gui,
   {
     position: {
-      height: 359,
-      longitude: 114.047245,
-      latitude: 22.504446,
+      longitude: 114.093278,
+      latitude: 22.497575,
+      height: 1648,
     },
     headingPitchRoll: {
-      heading: 28.084072,
-      pitch: -26.346292,
-      roll: 0,
+      heading: 319.296644,
+      pitch: -7.66627,
+      roll: 0.012352,
     },
   },
   true
@@ -66,28 +68,17 @@ const directionalLight = new DirectionalLight(viewer, gui, {
   },
   color: [255, 223, 223, 1],
   intensity: 6.2,
-});
+}, true);
 
 const skyBox = new SkyBoxOnGround(
   viewer,
   gui,
   {
     show: true,
-    sourcesType: "day2",
+    sourcesType: "day",
     sourcesList: [
       {
-        name: "day1",
-        sources: {
-          positiveX: "./static/skybox/skys/rightav9.jpg",
-          negativeX: "./static/skybox/skys/leftav9.jpg",
-          positiveY: "./static/skybox/skys/frontav9.jpg",
-          negativeY: "./static/skybox/skys/backav9.jpg",
-          positiveZ: "./static/skybox/skys/topav9.jpg",
-          negativeZ: "./static/skybox/skys/bottomav9.jpg",
-        },
-      },
-      {
-        name: "day2",
+        name: "day",
         sources: {
           positiveX: "./static/skybox/skys/SunSetRight.png",
           negativeX: "./static/skybox/skys/SunSetLeft.png",
@@ -97,20 +88,9 @@ const skyBox = new SkyBoxOnGround(
           negativeZ: "./static/skybox/skys/SunSetDown.png",
         },
       },
-      {
-        name: "day3",
-        sources: {
-          positiveX: "./static/skybox/skys/Right.jpg",
-          negativeX: "./static/skybox/skys/Left.jpg",
-          positiveY: "./static/skybox/skys/Front.jpg",
-          negativeY: "./static/skybox/skys/Back.jpg",
-          positiveZ: "./static/skybox/skys/Up.jpg",
-          negativeZ: "./static/skybox/skys/Down.jpg",
-        },
-      },
     ],
   },
-  false
+  true
 );
 
 const fogEffect = new FogEffect(viewer, {
