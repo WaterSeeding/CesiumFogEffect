@@ -5,33 +5,27 @@ let FogEffectSource = FogEffectGLSL;
 
 class FogEffect {
   viewer: Cesium.Viewer;
-  visibility: number;
-  color: Cesium.Color;
   fogStage: Cesium.PostProcessStage | undefined;
   constructor(
     viewer: Cesium.Viewer,
     options: { visibility?: number; color?: Cesium.Color },
   ) {
     this.viewer = viewer;
-    this.visibility = Cesium.defaultValue(options.visibility, 0.1);
-    this.color = Cesium.defaultValue(
+    let visibility = Cesium.defaultValue(options.visibility, 0.1);
+    let color = Cesium.defaultValue(
       options.color,
-      new Cesium.Color(0.8, 0.8, 0.8, 0.5),
+      new Cesium.Color(0.8, 0.8, 0.8, 0.3),
     );
-    this.init();
+    this.init(visibility, color);
   }
 
-  init() {
+  init(visibility: number, color: Cesium.Color) {
     this.fogStage = new Cesium.PostProcessStage({
       name: 'Cesium_FogEffect',
       fragmentShader: FogEffectSource,
       uniforms: {
-        visibility: () => {
-          return this.visibility;
-        },
-        fogColor: () => {
-          return this.color;
-        },
+        visibility: visibility,
+        color: color,
       },
     });
     this.viewer.scene.postProcessStages.add(this.fogStage);
@@ -39,6 +33,20 @@ class FogEffect {
 
   setEnabled(value: boolean) {
     this.fogStage!.enabled = value;
+  }
+
+  setVisibility(values: number) {
+    this.fogStage!.uniforms.visibility = values;
+  }
+
+  setColor(colorV: number[]) {
+    let color = new Cesium.Color(
+      colorV[0] / 255,
+      colorV[1] / 255,
+      colorV[2] / 255,
+      colorV[3],
+    );
+    this.fogStage!.uniforms.color = color;
   }
 
   destroy() {

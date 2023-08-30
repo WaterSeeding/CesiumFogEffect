@@ -9,6 +9,7 @@ import Clock from "./Clock/index";
 import Camera from "./Camera/index";
 import FogEffect from "./FogEffect/main/index";
 import { setGuiCheckbox } from "./guiTools/setGuiCheckbox";
+import { setGuiSlide } from "./guiTools/setGuiSlide";
 
 viewer.scene.skyAtmosphere.show = false;
 
@@ -103,7 +104,7 @@ const skyBox = new SkyBoxOnGround(
 );
 
 const fogEffect = new FogEffect(viewer, {
-  visibility: 0.2,
+  visibility: 0.15,
   color: new Cesium.Color(0.8, 0.8, 0.8, 0.3),
 });
 
@@ -112,4 +113,23 @@ folder.open();
 
 setGuiCheckbox(folder, { show: true }, "show", "显示", (v: boolean) => {
   fogEffect.setEnabled(v);
+});
+
+setGuiSlide(
+  folder,
+  { visibility: 0.15 },
+  "visibility",
+  "visibility",
+  {
+    min: 0.0,
+    max: 1.0,
+    step: 0.01,
+  },
+  (v: number) => {
+    fogEffect.setVisibility(v);
+  }
+);
+
+folder.addColor({ color: [204, 204, 204, 0.3] }, "color").onChange((colorV) => {
+  fogEffect.setColor(colorV);
 });
