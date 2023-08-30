@@ -104,8 +104,8 @@ const skyBox = new SkyBoxOnGround(
 );
 
 const fogEffect = new FogEffect(viewer, {
-  visibility: 0.15,
-  color: new Cesium.Color(0.8, 0.8, 0.8, 0.3),
+  visibility: 0.12,
+  color: new Cesium.Color(163 / 255, 163 / 255, 140 / 255, 0.3),
 });
 
 let folder = gui.addFolder("FogEffect");
@@ -130,6 +130,6 @@ setGuiSlide(
   }
 );
 
-folder.addColor({ color: [204, 204, 204, 0.3] }, "color").onChange((colorV) => {
+folder.addColor({ color: [163, 163, 140, 0.3] }, "color").onChange((colorV) => {
   fogEffect.setColor(colorV);
 });

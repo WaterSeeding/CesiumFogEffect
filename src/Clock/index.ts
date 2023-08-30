@@ -1,33 +1,29 @@
-import * as Cesium from 'cesium';
-import { showTime } from './utils/showTime';
+import * as Cesium from "cesium";
+import { showTime } from "./utils/showTime";
 
 class Clock {
   viewer!: Cesium.Viewer;
   constructor(viewer: Cesium.Viewer) {
     this.viewer = viewer;
-    // console.log("clockRange", this.viewer.clock.clockRange);
-    // console.log("clockStep", this.viewer.clock.clockStep);
-    // console.log("multiplier", this.viewer.clock.multiplier);
-    // console.log("canAnimate", this.viewer.clock.canAnimate);
-    // console.log("shouldAnimate", this.viewer.clock.shouldAnimate);
-    // console.log("currentTime", this.viewer.clock.currentTime.toString());
-    // console.log("startTime", this.viewer.clock.startTime.toString());
-    // console.log("stopTime", this.viewer.clock.stopTime.toString());
-
-    // let currentTimeJulianDate = this.viewer.clock.currentTime;
-    // let currentTimeDateString = this.getTime(currentTimeJulianDate);
   }
 
-  setTime(time: string = '2023-07-01 08:00:00'): void {
+  setTime(time: string = "2023-07-01 08:00:00"): void {
     const currentDate = new Date(time);
     const currentJulianDate = Cesium.JulianDate.fromDate(currentDate);
-    const endTimeJulianDate = Cesium.JulianDate.addDays(
+    const endTimeJulianDate = Cesium.JulianDate.addMinutes(
       currentJulianDate,
-      2,
-      new Cesium.JulianDate(),
+      60,
+      new Cesium.JulianDate()
     );
     this.viewer.clock.currentTime = currentJulianDate;
-    this.viewer.timeline.zoomTo(currentJulianDate, endTimeJulianDate);
+
+    // this.viewer.clock.startTime = currentJulianDate;
+    // this.viewer.clock.stopTime = endTimeJulianDate;
+
+    // this.viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+    // this.viewer.clock.multiplier = 300;
+
+    // this.viewer.timeline.zoomTo(currentJulianDate, endTimeJulianDate);
   }
 
   getTime(julianDate: Cesium.JulianDate) {

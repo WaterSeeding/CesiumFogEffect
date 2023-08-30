@@ -19,7 +19,27 @@
 
 ## 思路
 
-> 
+> 这里是使用到`Cesium.PostProcessStage`，来自定义一个雾气后期处理阶段。
+
+### Cesium.PostProcessStage 用法
+
+1. fragmentShader
+
+要使用的片段着色器，默认的 sampler2D 制服是 colorTexture 和 depthTexture 。颜色纹理作为渲染场景或上一阶段的输出。
+
+该着色器应包含一个或两个 uniforms。还有一个名为 v_textureCoordinates 的 vec2 ，可用于对纹理 UV 进行采样。
+
+2. uniforms
+
+作为设置片段着色器的uniforms。
+
+![Cesium.PostProcessStage](./md/3.png)
+
+<br />
+
+### 开发历程
+
+<br />
 
 ## 相关资料
 
