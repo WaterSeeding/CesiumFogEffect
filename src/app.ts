@@ -5,9 +5,10 @@ import { viewer } from "./main";
 import Model from "./Model/index";
 import DirectionalLight from "./DirectionalLight/index";
 import SkyBoxOnGround from "./SkyBoxOnGround/index";
+import Clock from "./Clock/index";
 import Camera from "./Camera/index";
 import FogEffect from "./FogEffect/main/index";
-import { setGuiCheckbox } from './guiTools/setGuiCheckbox'
+import { setGuiCheckbox } from "./guiTools/setGuiCheckbox";
 
 viewer.scene.skyAtmosphere.show = false;
 
@@ -20,19 +21,22 @@ const gui = new dat.GUI({
 gui.domElement.id = "gui";
 gui.show();
 
+let clock = new Clock(viewer);
+clock.setTime("2023-08-30 14:00:00");
+
 const camera = new Camera(
   viewer,
   gui,
   {
     position: {
-      longitude: 114.093278,
-      latitude: 22.497575,
-      height: 1648,
+      longitude: 114.059521,
+      latitude: 22.540434,
+      height: 705,
     },
     headingPitchRoll: {
-      heading: 319.296644,
-      pitch: -7.66627,
-      roll: 0.012352,
+      heading: 185.992266,
+      pitch: -6.831423,
+      roll: 359.99844,
     },
   },
   true
@@ -61,14 +65,19 @@ const model = new Model(
   true
 );
 
-const directionalLight = new DirectionalLight(viewer, gui, {
-  direction: {
-    longitude: -67,
-    latitude: -8.4,
+const directionalLight = new DirectionalLight(
+  viewer,
+  gui,
+  {
+    direction: {
+      longitude: -67,
+      latitude: -8.4,
+    },
+    color: [255, 223, 223, 1],
+    intensity: 6.2,
   },
-  color: [255, 223, 223, 1],
-  intensity: 6.2,
-}, true);
+  true
+);
 
 const skyBox = new SkyBoxOnGround(
   viewer,
